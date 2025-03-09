@@ -19,7 +19,9 @@ export const productSlice = createSlice({
     name:"prodıct",
     initialState,
     reducers:{
-
+        setSelectedProduct : (state,action) => {
+            state.selectedProduct = action.payload
+        }
     },
     extraReducers:(builder) => {
         builder.addCase(getAllProducts.pending,(state,action)=>{
@@ -33,6 +35,6 @@ export const productSlice = createSlice({
     }
 })
 
-export const {} = productSlice.actions
+export const {setSelectedProduct} = productSlice.actions
 export default productSlice.reducer
 

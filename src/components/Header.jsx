@@ -4,9 +4,13 @@ import logo from '../images/logo2.png'
 import { CiShoppingBasket } from "react-icons/ci";
 import { CiLight } from "react-icons/ci";
 import { FaRegMoon } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
+import Home from '../pages/Home';
 
 
 function Header() {
+
+    const navigate = useNavigate()
 
     const [theme,setTheme] = useState(false)    
 
@@ -28,7 +32,7 @@ function Header() {
 
   return (
     <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",padding:"10px"}}>
-        <div className='flex-row'>
+        <div className='flex-row' onClick={() => navigate("/")}>
             <img className='logo' src={logo}/>
             <p className='logo-text'>Emre Çalışkan A.Ş.</p>
         </div>
