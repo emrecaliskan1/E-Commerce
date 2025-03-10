@@ -14,11 +14,10 @@ const initialState = {
     totalAmount:0
 }
 
-
+//sepete eklenen ürünleri local storage'a yazma
 const writeFromBasketToStorage  = (basket) => {
     localStorage.setItem("basket",JSON.stringify(basket))
 }
-
 
 export const basketSlice = createSlice({
     name:"basket",

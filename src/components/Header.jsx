@@ -10,6 +10,7 @@ import Badge from '@mui/material/Badge';
 import { useDispatch, useSelector } from 'react-redux';
 import Drawer from '@mui/material/Drawer';
 import { setDrawer } from '../redux/slices/basketSlice';
+import { filterProducts } from '../redux/slices/productSlice';
 
 
 function Header() {
@@ -20,6 +21,10 @@ function Header() {
 
     const [theme,setTheme] = useState(false)    
 
+    //Filtreleme için arama çubuğu statei
+    const [searchItem, setSearchItem] = useState('')
+ 
+    //Tema değiştirme
     const changeTheme = () => {
         const root = document.getElementById("root")
 
@@ -35,6 +40,12 @@ function Header() {
         setTheme(!theme)
     }
 
+    //Filtreleme
+    const handleSearch = (e) => {
+        setSearchItem(e.target.value)
+        dispatch(filterProducts(e.target.value))
+    }
+
     const {products} = useSelector((store)=>store.basket)
 
 
@@ -45,7 +56,8 @@ function Header() {
             <p className='logo-text'>Emre Çalışkan A.Ş.</p>
         </div>
         <div className='flex-row'>
-            <input className='search-input' type="text" placeholder='Bir şeyler ara:'/>
+            <input className='search-input' type="text" placeholder='Bir şeyler ara:'
+            value={searchItem} onChange={handleSearch}/>
             <div>
                 {
                     theme ?  <FaRegMoon className='icon' onClick={changeTheme}/> : <CiLight className='icon' onClick={changeTheme}/>

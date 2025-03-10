@@ -6,7 +6,10 @@ import Product from '../components/Product';
 function ProductList() {
 
     const dispatch = useDispatch();
-    const {products} = useSelector((store)=> store.product)
+    const {products,filteredProducts} = useSelector((store)=> store.product)
+
+    // console.log("Products:" , getAllProducts)
+    // console.log("Filtered products: ", filteredProducts)
 
     useEffect(()=>{
         dispatch(getAllProducts())
@@ -15,8 +18,8 @@ function ProductList() {
   return (
     <div className='flex-row' style={{flexWrap:"wrap", marginTop:"25px"}}>
         {
-            products && products.map((product)=>{
-               return <Product key={product.id} product={product}/>
+            filteredProducts && filteredProducts.map((product)=>{
+                return <Product key={product.id} product={product}/>
             })
         }
     </div>
