@@ -53,14 +53,14 @@ function Header() {
     <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",padding:"10px"}}>
         <div className='flex-row' onClick={() => navigate("/")}>
             <img className='logo' src={logo}/>
-            <p className='logo-text'>Emre Çalışkan A.Ş.</p>
+            <p className='logo-text'>Çalışkanlar Market</p>
         </div>
         <div className='flex-row'>
             <input className='search-input' type="text" placeholder='Bir şeyler ara:'
             value={searchItem} onChange={handleSearch}/>
             <div>
                 {
-                    theme ?  <FaRegMoon className='icon' onClick={changeTheme}/> : <CiLight className='icon' onClick={changeTheme}/>
+                    theme ?  <FaRegMoon className='icon-theme' onClick={changeTheme}/> : <CiLight className='icon-theme' onClick={changeTheme}/>
                 }
                 <Badge onClick={()=>dispatch(setDrawer())} badgeContent={products.length} color="error">
                     <CiShoppingBasket style={{marginRight:"6px"}} className='icon'/>
