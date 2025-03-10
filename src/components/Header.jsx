@@ -7,11 +7,16 @@ import { FaRegMoon } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import Badge from '@mui/material/Badge';
+import { useDispatch, useSelector } from 'react-redux';
+import Drawer from '@mui/material/Drawer';
+import { setDrawer } from '../redux/slices/basketSlice';
 
 
 function Header() {
 
     const navigate = useNavigate()
+
+    const dispatch = useDispatch()
 
     const [theme,setTheme] = useState(false)    
 
@@ -30,6 +35,8 @@ function Header() {
         setTheme(!theme)
     }
 
+    const {products} = useSelector((store)=>store.basket)
+
 
   return (
     <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",padding:"10px"}}>
@@ -43,13 +50,13 @@ function Header() {
                 {
                     theme ?  <FaRegMoon className='icon' onClick={changeTheme}/> : <CiLight className='icon' onClick={changeTheme}/>
                 }
-                <Badge badgeContent={4} color="error">
+                <Badge onClick={()=>dispatch(setDrawer())} badgeContent={products.length} color="error">
                     <CiShoppingBasket style={{marginRight:"6px"}} className='icon'/>
                 </Badge>
                 
                
             </div>
-            
+
 
         </div>
     </div>
