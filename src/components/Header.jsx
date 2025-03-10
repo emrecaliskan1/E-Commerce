@@ -6,6 +6,7 @@ import { CiLight } from "react-icons/ci";
 import { FaRegMoon } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Home from '../pages/Home';
+import Badge from '@mui/material/Badge';
 
 
 function Header() {
@@ -42,7 +43,10 @@ function Header() {
                 {
                     theme ?  <FaRegMoon className='icon' onClick={changeTheme}/> : <CiLight className='icon' onClick={changeTheme}/>
                 }
-                <CiShoppingBasket className='icon'/>
+                <Badge badgeContent={4} color="error">
+                    <CiShoppingBasket style={{marginRight:"6px"}} className='icon'/>
+                </Badge>
+                
                
             </div>
             

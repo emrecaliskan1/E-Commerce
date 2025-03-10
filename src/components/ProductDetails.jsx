@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { setSelectedProduct } from '../redux/slices/productSlice'
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
+import { addToBasket } from '../redux/slices/basketSlice';
 
 function ProductDetails() {
 
@@ -37,17 +38,33 @@ function ProductDetails() {
         })
     }
 
+    const addBasket = () => {
+        const payload = {
+            id,
+            price,
+            image,
+            title,
+            description,
+            count
+        }
+
+        dispatch(addToBasket(payload))
+    }
+
   return (
     <div style={{marginTop:"30px",display:"flex",flexDirection:"row",justifyContent:"center"}}>
         <div style={{marginRight:"45px"}}>
             <img src={image} width={275} height={400} style={{border:"1px solid lightgrey", boxShadow:"1px 4px 3px lightgray", borderRadius:"5px", padding:"30px"}}  />
         </div>
         <div>
-            <h1 style={{fontFamily:"arial", fontSize:"35px"}}>{title}</h1>
+            <h1 style={{fontFamily:"arial", fontSize:"35px"}}>
+                {title}</h1>
             <hr />
-            <h3 style={{fontFamily:"tohama",fontSize:"20px"}}>{description}</h3>
+            <h3 style={{fontFamily:"tohama",fontSize:"20px"}}>
+                {description}</h3>
             <hr />
-            <h1 style={{fontSize:"50px",fontFamily:"arial",fontWeight:"bold",color:"#B22222"}}>{price}$</h1>
+            <h1 style={{fontSize:"50px",fontFamily:"arial",fontWeight:"bold",color:"#B22222"}}>
+                {price}$</h1>
 
             <div style={{display:"flex", alignItems:"center"}}>
                 <CiCirclePlus onClick={increment} style={{fontSize:"40px",marginRight:"15px", cursor:"pointer"}}/>
@@ -56,7 +73,18 @@ function ProductDetails() {
             </div>
 
             <div>
-                <button style={{marginTop:"25px", border:"none", padding:"15px",cursor:"pointer", backgroundColor:"#B22222", borderRadius:"5px", color:"white", fontWeight:"bold", fontSize:"20px"}}>Sepete Ekle</button>
+                <button 
+                onClick={addBasket}
+                style={{marginTop:"25px", 
+                border:"none", 
+                padding:"15px",
+                cursor:"pointer",
+                backgroundColor:"#B22222",
+                borderRadius:"5px",
+                color:"white",
+                fontWeight:"bold",
+                fontSize:"20px"}}>
+                Sepete Ekle</button>
             </div>
 
         </div>
